@@ -5,6 +5,8 @@ HTML site with searching ability on Google
 2. Adding Jsoup into pom.xml, which will do parsing through various googleweb sites and collecting informations from them.
 3. We created model class SearchKey which will collect results of searching.
 4. Creating SearchService which is responsible for downloading and parsing Google HTML and then saving info into objects and  returning list of SearchKey.
-5. Adding SearchController which get task to find some query GET/search?q=???, controller calls service, service find results, save them into objects and send them back to controller and conroller will return data in JSON (because it is REST API Contoller).
+5. Adding SearchController which get task to find some query GET/search?q=???, controller calls service, service find results, save them into objects and send them back to controller and conroller will return data in JSON (because it is REST API Controller).
 6. Cheking if the written code is fine and testing endpoint through POSTMAN: GET/ http://localhost:8080/search?q=kniha. Status is 200. It is  working.
-7. HTML and Javascript files contains input and show results in JSON.
+7. HTML and Javascript files contains input but don't show results in JSON.
+8. I am using Google Search API from https://serpapi.com/search-api instead of official Google Custom Search API. So I am changing also dependency in pom.xml.
+   
