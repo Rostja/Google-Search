@@ -12,4 +12,5 @@ HTML site with searching ability on Google
 9. Changed SearchService.java and pom.xml for service logic.
 10. Refactoring index.html. Updating Index.html and script.js for finding results in JSON and download them.
 11. Adding JUnit tests.
+12. Adding Dockerfile and docker-compose.yml. 
    
