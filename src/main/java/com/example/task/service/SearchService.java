@@ -1,40 +1,51 @@
 package com.example.task.service;
 
 import com.example.task.model.SearchKey;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
+import org.json.*;
 
-import java.util.ArrayList;
-import java.util.List;
+
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 
 @Service
 public class SearchService {
 
+    private final String API_KEY = "e728ab87d1bd643feed3f1e97db81e0959267efdb492505b0a0141986f32245d";
+
     public List<SearchKey> search(String query) throws Exception {
-        String url = "https://www.google.com/search?q=" + query + "&num=10";
 
-        Document document = Jsoup.connect(url)
-                .userAgent("Mozilla/5.0")
-                .get();
 
-        Elements results = document.select("div.g");
+        String url =
+                "https://serpapi.com/search.json?q="
+                        + URLEncoder.encode(query, StandardCharsets.UTF_8)
+                        + "&api_key=" + API_KEY;
+
+        InputStream input = new URL(url).openStream();
+        String json = new Scanner(input, "UTF-8").useDelimiter("\\A").next();
+
+        JSONObject data = new JSONObject(json);
 
         List<SearchKey> list = new ArrayList<>();
 
-        for (Element result : results) {
-            Element title = result.selectFirst("h3");
-            Element link = result.selectFirst("a");
+        if (data.has("organic_results")) {
 
-            if (title != null && link != null) {
+            JSONArray items = data.getJSONArray("organic_results");
+
+            for (int i = 0; i < items.length(); i++) {
+
+                JSONObject item = items.getJSONObject(i);
+
                 list.add(new SearchKey(
-                        title.text(),
-                        link.attr("href")
+                        item.getString("title"),
+                        item.getString("link")
                 ));
             }
         }
+
         return list;
     }
 }
