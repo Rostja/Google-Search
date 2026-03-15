@@ -6,10 +6,26 @@ async function search() {
 
  const data = await response.json();
 
- document.getElementById("result").textContent =
-   JSON.stringify(data,null,2);
+ const content = document.getElementById("content");
+ content.innerHTML = "";
 
- const blob = new Blob([JSON.stringify(data)],{type:"application/json"});
+ if (data.length === 0) {
+     document.getElementById("demo").innerHTML = "No results found";
+     return;
+   }
+
+   data.forEach(item => {
+
+       const link = document.createElement("a");
+       link.href = item.url;
+       link.textContent = item.keyWord;
+       link.target = "_blank";
+
+       content.appendChild(link);
+       content.appendChild(document.createElement("br"));
+     });
+
+ const blob = new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
 
  const link = document.createElement("a");
 
