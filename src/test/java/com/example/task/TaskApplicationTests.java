@@ -9,15 +9,16 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class TaskApplicationTests {
 
+	@Autowired
+	private SearchService searchService;
+
 	@Test
 	void testSearchResults() throws Exception {
-		SearchService service = new SearchService();
-
-		var results = service.search("kniha");
-
+		var results = searchService.search("kniha");
 		assertNotNull(results);
 		assertFalse(results.isEmpty());
 		assertNotNull(results.get(0).getUrl());
+
 	}
 
 }
