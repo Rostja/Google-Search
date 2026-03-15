@@ -1,6 +1,7 @@
 package com.example.task.service;
 
 import com.example.task.model.SearchKey;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.json.*;
 
@@ -14,7 +15,9 @@ import java.util.*;
 @Service
 public class SearchService {
 
-    private final String API_KEY = "e728ab87d1bd643feed3f1e97db81e0959267efdb492505b0a0141986f32245d";
+    @Value("${serpapi.key}")
+    private String apiKey;
+
 
     public List<SearchKey> search(String query) throws Exception {
 
@@ -22,7 +25,7 @@ public class SearchService {
         String url =
                 "https://serpapi.com/search.json?q="
                         + URLEncoder.encode(query, StandardCharsets.UTF_8)
-                        + "&api_key=" + API_KEY;
+                        + "&api_key=" + apiKey;
 
         InputStream input = new URL(url).openStream();
         String json = new Scanner(input, "UTF-8").useDelimiter("\\A").next();

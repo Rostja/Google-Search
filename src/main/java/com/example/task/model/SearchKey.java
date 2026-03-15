@@ -2,16 +2,16 @@ package com.example.task.model;
 
 public class SearchKey {
 
-    private String keyWord;
+    private String title;
     private String url;
 
-    public SearchKey(String keyWord, String url) {
-        this.keyWord = keyWord;
+    public SearchKey(String title, String url) {
+        this.title = title;
         this.url = url;
     }
 
     public String getKeyWord() {
-        return keyWord;
+        return title;
     }
 
     public String getUrl() {

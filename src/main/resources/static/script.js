@@ -18,7 +18,7 @@ async function search() {
 
        const link = document.createElement("a");
        link.href = item.url;
-       link.textContent = item.keyWord;
+       link.textContent = item.title;
        link.target = "_blank";
 
        content.appendChild(link);
