@@ -5,4 +5,4 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - serpapi.key=${SERPAPI_KEY}
+      - SERPAPI_KEY=e728ab87d1bd643feed3f1e97db81e0959267efdb492505b0a0141986f32245d

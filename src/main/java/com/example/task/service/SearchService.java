@@ -15,17 +15,17 @@ import java.util.*;
 @Service
 public class SearchService {
 
-    @Value("${serpapi.key}")
-    private String apiKey;
+    private final String API_KEY;
 
+    public SearchService(@Value("${SERPAPI_KEY}") String apiKey) {
+        this.API_KEY = apiKey;
+    }
 
     public List<SearchKey> search(String query) throws Exception {
+        String url = "https://serpapi.com/search.json?q="
+                + URLEncoder.encode(query, StandardCharsets.UTF_8)
+                + "&api_key=" + API_KEY;
 
-
-        String url =
-                "https://serpapi.com/search.json?q="
-                        + URLEncoder.encode(query, StandardCharsets.UTF_8)
-                        + "&api_key=" + apiKey;
 
         InputStream input = new URL(url).openStream();
         String json = new Scanner(input, "UTF-8").useDelimiter("\\A").next();
