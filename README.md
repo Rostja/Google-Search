@@ -9,4 +9,5 @@ HTML site with searching ability on Google
 6. Cheking if the written code is fine and testing endpoint through POSTMAN: GET/ http://localhost:8080/search?q=kniha. Status is 200. It is  working.
 7. HTML and Javascript files contains input but don't show results in JSON.
 8. I am using Google Search API from https://serpapi.com/search-api instead of official Google Custom Search API. So I am changing also dependency in pom.xml.
+9. Changed SearchService.java and pom.xml for service logic.
    
