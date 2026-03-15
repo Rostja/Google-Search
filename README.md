@@ -11,4 +11,5 @@ HTML site with searching ability on Google
 8. I am using Google Search API from https://serpapi.com/search-api instead of official Google Custom Search API. So I am changing also dependency in pom.xml.
 9. Changed SearchService.java and pom.xml for service logic.
 10. Refactoring index.html. Updating Index.html and script.js for finding results in JSON and download them.
+11. Adding JUnit tests.
    
