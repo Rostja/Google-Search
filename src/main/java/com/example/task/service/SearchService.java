@@ -31,7 +31,7 @@ public class SearchService {
         try (InputStream input = new URL(url).openStream();
              Scanner scanner = new Scanner(input, "UTF-8")) {
 
-            String json = scanner.useDelimiter("\\A").next();
+            json = scanner.useDelimiter("\\A").next();
         }
 
         JSONObject data = new JSONObject(json);
