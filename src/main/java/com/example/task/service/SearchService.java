@@ -27,8 +27,11 @@ public class SearchService {
                 + "&api_key=" + API_KEY;
 
 
-        InputStream input = new URL(url).openStream();
-        String json = new Scanner(input, "UTF-8").useDelimiter("\\A").next();
+        try (InputStream input = new URL(url).openStream();
+             Scanner scanner = new Scanner(input, "UTF-8")) {
+
+            String json = scanner.useDelimiter("\\A").next();
+        }
 
         JSONObject data = new JSONObject(json);
 
@@ -38,7 +41,7 @@ public class SearchService {
 
             JSONArray items = data.getJSONArray("organic_results");
 
-            for (int i = 0; i < items.length(); i++) {
+            for (int i = 0; i < Math.min(items.length(), 10); i++) {
 
                 JSONObject item = items.getJSONObject(i);
 

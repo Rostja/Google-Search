@@ -10,7 +10,7 @@ public class SearchKey {
         this.url = url;
     }
 
-    public String getKeyWord() {
+    public String getTitle() {
         return title;
     }
 
