@@ -26,6 +26,7 @@ public class SearchService {
                 + URLEncoder.encode(query, StandardCharsets.UTF_8)
                 + "&api_key=" + API_KEY;
 
+        String json;
 
         try (InputStream input = new URL(url).openStream();
              Scanner scanner = new Scanner(input, "UTF-8")) {
